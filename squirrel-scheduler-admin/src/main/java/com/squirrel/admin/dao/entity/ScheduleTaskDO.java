@@ -33,4 +33,8 @@ public class ScheduleTaskDO extends BaseDO {
 
     private String corn;// cron表达式
     private Integer status;// 定时任务状态，0：禁用，1：启用
+
+    private String executorParam;// 执行器参数(json 格式)
+    private int executorTimeout;// 执行器超时时间（单位：秒）默认为3次
+    private int executorFailRetryCount;// 失败重试次数
 }
