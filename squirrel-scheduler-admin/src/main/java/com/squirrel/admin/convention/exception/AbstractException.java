@@ -1,6 +1,6 @@
 package com.squirrel.admin.convention.exception;
 
-import com.squirrel.index12306.framework.starter.convention.errorcode.IErrorCode;
+import com.squirrel.admin.convention.errorcode.IErrorCode;
 import lombok.Getter;
 import org.springframework.util.StringUtils;
 

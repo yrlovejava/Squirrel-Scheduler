@@ -1,7 +1,8 @@
 package com.squirrel.admin.convention.exception;
 
-import com.squirrel.index12306.framework.starter.convention.errorcode.BaseErrorCode;
-import com.squirrel.index12306.framework.starter.convention.errorcode.IErrorCode;
+
+import com.squirrel.admin.convention.errorcode.BaseErrorCode;
+import com.squirrel.admin.convention.errorcode.IErrorCode;
 
 /**
  * 客户端异常
