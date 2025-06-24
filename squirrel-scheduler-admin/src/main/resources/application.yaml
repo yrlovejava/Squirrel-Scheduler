@@ -1,0 +1,22 @@
+server:
+  port: 7050
+
+spring:
+  profiles:
+    active: local
+  application:
+    name: squirrel-scheduler-admin
+  datasource:
+    url: jdbc:mysql://localhost:3306/squirrel_scheduler?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: delFlag
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
