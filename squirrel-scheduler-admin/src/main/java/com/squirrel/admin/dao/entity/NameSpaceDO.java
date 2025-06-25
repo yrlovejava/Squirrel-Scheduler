@@ -21,6 +21,8 @@ import lombok.NoArgsConstructor;
 @TableName("tbl_namespace")
 public class NameSpaceDO extends BaseDO {
 
+    public static final Integer DEFAULT_NAMESPACE_ID = 1;
+
     private Integer id; // 主键ID
     private String name; // 命名空间名称
     private String description; // 命名空间描述

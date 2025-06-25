@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import static com.squirrel.admin.dao.entity.NameSpaceDO.DEFAULT_NAMESPACE_ID;
 import static com.squirrel.admin.dao.entity.ScheduleTaskDO.DEFAULT_EXECUTOR_FAIL_RETRY_COUNT;
 import static com.squirrel.admin.dao.entity.ScheduleTaskDO.DEFAULT_EXECUTOR_TIMEOUT;
 
@@ -39,6 +40,7 @@ public class ScheduleTaskServiceImpl extends ServiceImpl<ScheduleTaskMapper, Sch
         scheduleTaskDO.setLastRunTime(System.currentTimeMillis());
         scheduleTaskDO.setExecutorTimeout(scheduleTaskDO.getExecutorTimeout() == null ? DEFAULT_EXECUTOR_TIMEOUT : scheduleTaskDO.getExecutorTimeout());
         scheduleTaskDO.setExecutorFailRetryCount(scheduleTaskDO.getExecutorFailRetryCount() == null? DEFAULT_EXECUTOR_FAIL_RETRY_COUNT : scheduleTaskDO.getExecutorFailRetryCount());
+        scheduleTaskDO.setNamespace(scheduleTaskDO.getNamespace() == null? DEFAULT_NAMESPACE_ID : scheduleTaskDO.getNamespace());
 
         // 查询是否存在同名任务
         LambdaQueryWrapper<ScheduleTaskDO> queryWrapper = new LambdaQueryWrapper<>(ScheduleTaskDO.class)
