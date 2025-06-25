@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Accessors(chain = true)
 public class Result<T> implements Serializable {
 
-    public static final String SUCCESS_CODE = "";
+    public static final String SUCCESS_CODE = "0";
 
     private String code;
 

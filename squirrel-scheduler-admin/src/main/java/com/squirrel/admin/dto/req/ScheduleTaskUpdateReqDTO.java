@@ -10,6 +10,7 @@ import lombok.Data;
 @Data
 public class ScheduleTaskUpdateReqDTO {
 
+    private Integer id;// 任务id
     private String name;// 任务名称
     private String cron;// 任务cron表达式
     private String description;// 任务描述

@@ -26,14 +26,14 @@ public class ScheduleTaskController {
 
     @PostMapping("/")
     @Operation(description = "保存任务")
-    public Result<Void> saveTask(ScheduleTaskSaveReqDTO requestParam) {
+    public Result<Void> saveTask(@RequestBody ScheduleTaskSaveReqDTO requestParam) {
         scheduleTaskService.saveTask(requestParam);
         return Results.success();
     }
 
     @PutMapping("/")
     @Operation(description = "更新任务")
-    public Result<Void> updateTask(ScheduleTaskUpdateReqDTO requestParam) {
+    public Result<Void> updateTask(@RequestBody ScheduleTaskUpdateReqDTO requestParam) {
         scheduleTaskService.updateTask(requestParam);
         return Results.success();
     }

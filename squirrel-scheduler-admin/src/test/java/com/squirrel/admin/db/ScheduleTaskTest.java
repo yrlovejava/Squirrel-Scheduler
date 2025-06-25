@@ -19,7 +19,7 @@ public class ScheduleTaskTest {
     public void testSaveScheduleTask() {
         ScheduleTaskDO task = ScheduleTaskDO.builder()
                 .name("Test Task")
-                .corn("0 0 12 * * ?")
+                .cron("0 0 12 * * ?")
                 .description("Test Description")
                 .schedulerId(1)
                 .emailList("test1@example.com,test2@example.com")
