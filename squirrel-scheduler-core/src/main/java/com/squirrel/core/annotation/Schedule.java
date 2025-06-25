@@ -25,4 +25,10 @@ public @interface Schedule {
      * @return Task description, with a default value of an empty string.
      */
     String description() default "";
+
+    /**
+     * Task handler used to execute the task.
+     * @return Task handler, with a default value of an empty string.
+     */
+    Class<?> handler();
 }
