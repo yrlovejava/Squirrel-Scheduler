@@ -2,14 +2,14 @@ package com.squirrel.admin.controller;
 
 import com.squirrel.admin.convention.result.Result;
 import com.squirrel.admin.convention.result.Results;
+import com.squirrel.admin.dto.req.ScheduleTaskDeleteReqDTO;
 import com.squirrel.admin.dto.req.ScheduleTaskSaveReqDTO;
 import com.squirrel.admin.dto.req.ScheduleTaskUpdateReqDTO;
 import com.squirrel.admin.service.ScheduleTaskService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author xiaobai
@@ -19,19 +19,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/task/v1")
 @RequiredArgsConstructor
+@Tag(name = "定时任务管理", description = "定时任务管理")
 public class ScheduleTaskController {
 
     private final ScheduleTaskService scheduleTaskService;
 
     @PostMapping("/")
+    @Operation(description = "保存任务")
     public Result<Void> saveTask(ScheduleTaskSaveReqDTO requestParam) {
         scheduleTaskService.saveTask(requestParam);
         return Results.success();
     }
 
     @PutMapping("/")
+    @Operation(description = "更新任务")
     public Result<Void> updateTask(ScheduleTaskUpdateReqDTO requestParam) {
         scheduleTaskService.updateTask(requestParam);
+        return Results.success();
+    }
+
+    @DeleteMapping("/")
+    @Operation(description = "删除任务")
+    public Result<Void> deleteTask(ScheduleTaskDeleteReqDTO requestParam) {
+        scheduleTaskService.deleteTask(requestParam);
         return Results.success();
     }
 }

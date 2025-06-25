@@ -5,6 +5,8 @@ import com.squirrel.admin.convention.result.Results;
 import com.squirrel.admin.dto.req.UserLoginReqDTO;
 import com.squirrel.admin.dto.resp.UserLoginRespDTO;
 import com.squirrel.admin.service.UserLoginService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user/v1")
 @RequiredArgsConstructor
+@Tag(name = "用户管理", description = "用户管理")
 public class UserController {
 
     private final UserLoginService userLoginService;
 
     @PostMapping("/login")
+    @Operation(description = "用户登录")
     public Result<UserLoginRespDTO> login(UserLoginReqDTO requestParam){
         return Results.success(userLoginService.login(requestParam));
     }
