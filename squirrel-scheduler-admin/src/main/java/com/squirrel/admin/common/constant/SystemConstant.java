@@ -1,4 +1,4 @@
-package com.squirrel.admin.constant;
+package com.squirrel.admin.common.constant;
 
 /**
  * SystemConstant

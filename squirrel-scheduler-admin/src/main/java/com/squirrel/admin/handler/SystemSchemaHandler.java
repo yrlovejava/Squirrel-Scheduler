@@ -1,7 +1,7 @@
 package com.squirrel.admin.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import com.squirrel.admin.constant.SystemConstant;
+import com.squirrel.admin.common.constant.SystemConstant;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 

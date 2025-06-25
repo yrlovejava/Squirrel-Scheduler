@@ -44,7 +44,7 @@ public class UserLoginServiceImpl implements UserLoginService {
             throw new ClientException("密码错误");
         }
 
-        // 4.生成token
+        // 4.生成token TODO JWT
         String token = UUID.fastUUID().toString();
 
         // 5.返回结果
