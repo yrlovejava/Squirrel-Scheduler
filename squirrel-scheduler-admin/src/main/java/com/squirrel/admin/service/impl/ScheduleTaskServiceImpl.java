@@ -2,6 +2,7 @@ package com.squirrel.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.squirrel.admin.common.constant.SystemConstant;
 import com.squirrel.admin.common.enums.TaskStatusEnum;
 import com.squirrel.admin.convention.exception.ClientException;
 import com.squirrel.admin.convention.exception.ServiceException;
@@ -42,7 +43,8 @@ public class ScheduleTaskServiceImpl extends ServiceImpl<ScheduleTaskMapper, Sch
         // 查询是否存在同名任务
         LambdaQueryWrapper<ScheduleTaskDO> queryWrapper = new LambdaQueryWrapper<>(ScheduleTaskDO.class)
                 .eq(ScheduleTaskDO::getName, scheduleTaskDO.getName())
-                .eq(ScheduleTaskDO::getNamespace, scheduleTaskDO.getNamespace());
+                .eq(ScheduleTaskDO::getNamespace, scheduleTaskDO.getNamespace())
+                .eq(ScheduleTaskDO::getDelFlag, SystemConstant.NO_DEL_FLAG);
         ScheduleTaskDO one = getOne(queryWrapper);
         if (one != null) {
             throw new ClientException("任务名称已存在");
