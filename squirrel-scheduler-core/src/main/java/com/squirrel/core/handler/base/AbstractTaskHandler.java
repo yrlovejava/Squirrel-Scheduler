@@ -1,5 +1,7 @@
 package com.squirrel.core.handler.base;
 
+import com.squirrel.core.task.SquirrelTask;
+
 /**
  * Abstract task handler class
  *
@@ -10,17 +12,7 @@ package com.squirrel.core.handler.base;
 public abstract class AbstractTaskHandler implements ITaskHandler{
 
     @Override
-    public void init() {
-        // todo init
-    }
-
-    @Override
-    public void destroy() {
-        // todo destroy
-    }
-
-    @Override
-    public void execute() {
-        // todo execute
+    public void handle(SquirrelTask task) {
+        // todo handle
     }
 }

@@ -10,12 +10,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "squirrel.scheduler.executor")
 public class ExecutorConfig {
 
-    private int threadnum;
-
-    private int maxsize;
-
-    public int getThreadnum() {return threadnum;}
-    public void setThreadnum(int threadnum) {this.threadnum = threadnum;}
-    public int getMaxsize() {return maxsize;}
-    public void setMaxsize(int maxsize) {this.maxsize = maxsize;}
+    private String namespace;
+    public String getNamespace() {
+        return namespace;
+    }
 }

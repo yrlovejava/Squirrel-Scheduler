@@ -1,5 +1,7 @@
 package com.squirrel.core.handler.base;
 
+import com.squirrel.core.task.SquirrelTask;
+
 /**
  * Task handler interface.
  *
@@ -9,9 +11,5 @@ package com.squirrel.core.handler.base;
  */
 public interface ITaskHandler {
 
-    void execute();
-
-    void init();
-
-    void destroy();
+    void handle(SquirrelTask task);
 }
