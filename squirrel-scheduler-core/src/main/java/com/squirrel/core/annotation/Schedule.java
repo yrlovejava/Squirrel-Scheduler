@@ -1,5 +1,7 @@
 package com.squirrel.core.annotation;
 
+import com.squirrel.core.handler.DedicatedThreadTaskHandler;
+
 import java.lang.annotation.*;
 
 /**
@@ -28,7 +30,8 @@ public @interface Schedule {
 
     /**
      * Task handler used to execute the task.
+     * default is DedicatedThreadTaskHandler
      * @return Task handler, with a default value of an empty string.
      */
-    Class<?> handler();
+    Class<?> handler() default DedicatedThreadTaskHandler.class;
 }
