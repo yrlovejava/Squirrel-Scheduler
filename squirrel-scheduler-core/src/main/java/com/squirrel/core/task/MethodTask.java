@@ -11,12 +11,19 @@ import java.lang.reflect.Method;
  */
 public class MethodTask implements SquirrelTask{
 
+    private final String taskName;
     private final Method method;
     private final Object target;
 
-    public MethodTask(Method method,Object target) {
+    public MethodTask(Method method,Object target,String taskName) {
         this.method = method;
         this.target = target;
+        this.taskName = taskName;
+    }
+
+    @Override
+    public String getTaskName() {
+        return taskName;
     }
 
     @Override

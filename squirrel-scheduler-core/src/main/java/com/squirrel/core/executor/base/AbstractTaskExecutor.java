@@ -113,7 +113,7 @@ public abstract class AbstractTaskExecutor implements Executor, ApplicationConte
                         registerHandler(schedule.value(), taskHandler);
                     }
                     // register task
-                    MethodTask methodTask = new MethodTask(method, bean);
+                    MethodTask methodTask = new MethodTask(method, bean,schedule.value());
                     registerTask(schedule.value(), methodTask);
                 }
             }

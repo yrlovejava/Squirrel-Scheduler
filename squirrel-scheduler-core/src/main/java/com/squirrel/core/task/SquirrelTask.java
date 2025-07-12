@@ -9,5 +9,7 @@ package com.squirrel.core.task;
  */
 public interface SquirrelTask {
 
+    String getTaskName();
+
     void execute();
 }
