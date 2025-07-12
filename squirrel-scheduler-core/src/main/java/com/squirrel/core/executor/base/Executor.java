@@ -12,7 +12,7 @@ public interface Executor {
     /**
      * receive task from the scheduler to execute
      */
-    void receiveTask();
+    void receiveTask(String name);
 
     /**
      * report task status to the scheduler

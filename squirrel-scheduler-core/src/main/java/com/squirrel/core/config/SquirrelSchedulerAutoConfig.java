@@ -20,4 +20,9 @@ public class SquirrelSchedulerAutoConfig {
     public LogFileConfig logFileConfig(){
         return new LogFileConfig();
     }
+
+    @Bean
+    public ThreadPoolConfig threadPoolConfig(){
+        return new ThreadPoolConfig();
+    }
 }

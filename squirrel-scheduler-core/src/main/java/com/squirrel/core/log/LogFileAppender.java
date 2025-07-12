@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -98,7 +99,7 @@ public class LogFileAppender {
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(logFile, true);
-            fos.write(appendLog.getBytes("utf-8"));
+            fos.write(appendLog.getBytes(StandardCharsets.UTF_8));
             fos.flush();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);

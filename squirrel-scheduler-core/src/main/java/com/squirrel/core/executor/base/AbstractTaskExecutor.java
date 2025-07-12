@@ -3,7 +3,7 @@ package com.squirrel.core.executor.base;
 import com.squirrel.core.annotation.Schedule;
 import com.squirrel.core.config.ExecutorConfig;
 import com.squirrel.core.handler.base.ITaskHandler;
-import com.squirrel.core.log.LogFileAppender;
+import com.squirrel.core.task.MethodTask;
 import com.squirrel.core.task.SquirrelTask;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -11,7 +11,6 @@ import org.springframework.context.ApplicationContextAware;
 import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * Abstract task Executor
@@ -62,7 +61,7 @@ public abstract class AbstractTaskExecutor implements Executor, ApplicationConte
         String taskName = getTaskName(name);
         return taskHandlerRepo.get(taskName);
     }
-    public static ITaskHandler registerTask(String name, ITaskHandler task) {
+    public static ITaskHandler registerHandler(String name, ITaskHandler task) {
         String taskName = getTaskName(name);
         return taskHandlerRepo.put(taskName, task);
     }
@@ -74,10 +73,12 @@ public abstract class AbstractTaskExecutor implements Executor, ApplicationConte
      */
     private static ConcurrentHashMap<String, SquirrelTask> taskRepo;// the map is used to store the task
     public static SquirrelTask getTask(String name) {
-        return taskRepo.get(name);
+        String taskName = getTaskName(name);
+        return taskRepo.get(taskName);
     }
     public static SquirrelTask registerTask(String name, SquirrelTask task) {
-        return taskRepo.put(name, task);
+        String taskName = getTaskName(name);
+        return taskRepo.put(taskName, task);
     }
 
     public AbstractTaskExecutor(String adminAddress, String address, String ip, int port,ExecutorConfig executorConfig) {
@@ -97,7 +98,6 @@ public abstract class AbstractTaskExecutor implements Executor, ApplicationConte
 
     public void init() {
         // scan method with @Schedule annotation
-        // todo register task
         Map<String, Object> beans = applicationContext.getBeansOfType(Object.class);
         for (Object bean : beans.values()) {
             Class<?> beanClass = bean.getClass();
@@ -109,11 +109,29 @@ public abstract class AbstractTaskExecutor implements Executor, ApplicationConte
                     Class<?> handlerClass = schedule.handler();
                     Object handler = applicationContext.getBean(handlerClass);
                     if (handler instanceof ITaskHandler taskHandler) {
-                        // register task
-                        registerTask(schedule.value(), taskHandler);
+                        // register handler
+                        registerHandler(schedule.value(), taskHandler);
                     }
+                    // register task
+                    MethodTask methodTask = new MethodTask(method, bean);
+                    registerTask(schedule.value(), methodTask);
                 }
             }
         }
+    }
+
+    @Override
+    public void receiveTask(String name) {
+        // get task
+        SquirrelTask task = getTask(name);
+        if (task == null) {
+            throw new RuntimeException("Task not found");
+        }
+        // get handler
+        ITaskHandler handler = getHandler(name);
+        if (handler == null) {
+            throw new RuntimeException("Handler not found");
+        }
+        handler.handle(task);
     }
 }
